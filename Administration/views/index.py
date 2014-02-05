@@ -7,7 +7,7 @@ from . import templater
 
 def process_request(request):
     stores = smod.store.objects.exclude(active=False)
-
+    print("VCS is awesome!!")
 
     template_vars = {
         'stores': stores,
