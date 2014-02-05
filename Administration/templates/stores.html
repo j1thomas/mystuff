@@ -1,0 +1,37 @@
+<%inherit file = "base_template.htm"/>
+
+<%block name="content">
+${ stores }
+<h1>all stores:</h1>
+<div class="pull-right">
+	<a class="btn btn-default" href="/edit_stores/new/">Create Store</a>
+</div>
+<table class="table table-striped">
+	<thead>
+		<tr>
+			<th>ID</th>
+			<th>name</th>
+			<th>address</th>
+			<th>phone</th>
+			<th>schedule</th>
+			<th>Actions</th>
+			<th>Active</th>
+		</tr>
+	</thead>
+	<tbody>
+		%for s in stores:
+		<tr>
+			<td>${ s.id }</td>
+			<td>${ s.name }</td>
+			<td>${ s.street }</td>
+			<td>${ s.phone }</td>
+			<td>${ s.schedule }</td>
+			<td><a href="edit_store/${ s.id }/">Edit</a></td>
+			
+			<td>${ s.active }<a href="/Administration/edit_store__delete/${ s.id }/">  Remove</a></td>
+		</tr>
+		%endfor
+	</tbody>
+</table>
+
+</%block>
