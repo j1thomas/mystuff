@@ -14,10 +14,10 @@ def process_request(request):
     if request.urlparams[0] == 'new':
         i = imod.SaleInventory
         i.save()
-        return HttpResponseRedirect('/Administration/inventory/edit_iventory/' + str(i.id))
+        return HttpResponseRedirect('/Administration/edit_sale_inventory/' + str(i.id))
 
     else:
-        i = imod.store.objects.get(id=request.urlparams[0])
+        i = imod.SaleInventory.objects.get(id=request.urlparams[0])
 
     #Run the Form
 
@@ -65,5 +65,5 @@ def process_request__delete(request):
     i.active=False
     i.save()
     print("This almost deleted")
-    return HttpResponseRedirect('/Administration/inventory/')
+    return HttpResponseRedirect('/Administration/sale_inventory/')
 

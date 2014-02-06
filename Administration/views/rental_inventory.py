@@ -6,12 +6,12 @@ from . import templater
 
 
 def process_request(request):
-    inventory = imod.SaleInventory.objects.exclude(active=False)
+    Rental_Inventory = imod.RentalInventory.objects.exclude(active=False)
 
 
     template_vars = {
-        'inventory': inventory,
+        'rental_inventory': Rental_Inventory,
     }
 
-    return templater.render_to_response(request, 'inventory.html', template_vars)
+    return templater.render_to_response(request, 'rental_inventory.html', template_vars)
 

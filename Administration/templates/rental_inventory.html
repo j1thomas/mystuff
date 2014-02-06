@@ -1,0 +1,38 @@
+<%inherit file = "base_template.htm"/>
+
+<%block name="content">
+${ rental_inventory }
+<h1>all inventory:</h1>
+<div class="pull-right">
+	<a class="btn btn-default" href="/Administration/edit_inventory/new/">Create Inventory</a>
+</div>
+<table class="table table-striped">
+	<thead>
+		<tr>
+			<th>title</th>
+			<th>description</th>
+			<th>category</th>
+			<th>commission</th>
+			<th>manufacturer</th>
+			<th>sku number</th>
+
+		</tr>
+	</thead>
+	<tbody>
+		%for i in rental_inventory:
+		<tr>
+			<td>${ i.title }</td>
+			<td>${ i.description }</td>
+			<td>${ i.category }</td>
+			<td>${ i.commission }</td>
+			<td>${ i.manufacturer }</td>
+            <td>${ i.sku_number }</td>
+			<td><a href="edit_inventory/${ s.id }/">Edit</a></td>
+
+			<td>${ s.active }<a href="/Administration/edit_inventory__delete/${ s.id }/">  Remove</a></td>
+		</tr>
+		%endfor
+	</tbody>
+</table>
+
+</%block>
