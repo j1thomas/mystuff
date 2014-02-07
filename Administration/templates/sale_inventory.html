@@ -1,10 +1,10 @@
-<%inherit file = "base_template.htm"/>
+ <%inherit file = "base_template.htm"/>
 
 <%block name="content">
 ${ sale_inventory }
-<h1>all inventory:</h1>
+<h1>all sale inventory:</h1>
 <div class="pull-right">
-	<a class="btn btn-default" href="/Administration/sale_inventory/new/">Create Inventory</a>
+	<a class="btn btn-default" href="/edit_sale_inventory/new/">Create Inventory</a>
 </div>
 <table class="table table-striped">
 	<thead>
@@ -24,12 +24,12 @@ ${ sale_inventory }
 			<td>${ i.title }</td>
 			<td>${ i.description }</td>
 			<td>${ i.category }</td>
-			<td>${ i.commission }</td>
+			<td>${ i.commission_amount }</td>
 			<td>${ i.manufacturer }</td>
             <td>${ i.sku_number }</td>
-			<td><a href="edit_inventory/${ s.id }/">Edit</a></td>
+			<td><a href="edit_sale_inventory/${ i.id }/">Edit</a></td>
 
-			<td>${ i.active }<a href="/Administration/edit_inventory__delete/${ s.id }/">  Remove</a></td>
+			<td>${ i.active }<a href="/Administration/edit_sale_inventory__delete/${ i.id }/">  Remove</a></td>
 		</tr>
 		%endfor
 	</tbody>

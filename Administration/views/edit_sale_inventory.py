@@ -12,8 +12,9 @@ def process_request(request):
     #get the business objects
 
     if request.urlparams[0] == 'new':
-        i = imod.SaleInventory
+        i = imod.SaleInventory()
         i.save()
+        print("new object was created")
         return HttpResponseRedirect('/Administration/edit_sale_inventory/' + str(i.id))
 
     else:
@@ -37,9 +38,9 @@ def process_request(request):
             i.description = form.cleaned_data['description']
             i.category = form.cleaned_data['category']
             i.commission_amount = form.cleaned_data['commission_amount']
-            i.sku_number = form.cleaned_data['sku_number']
+            i.sku_number = form.cleaned_data['sku number']
             i.save()
-            return HttpResponseRedirect('/Administration/')
+            return HttpResponseRedirect('/Administration/sale_inventory')
 
 
     #return the template HTML
@@ -61,9 +62,9 @@ class inventoryForm(forms.Form):
 
 
 def process_request__delete(request):
-    i = imod.store.objects.get(id=request.urlparams[0])
+    i = imod.SaleInventory.objects.get(id=request.urlparams[0])
     i.active=False
     i.save()
     print("This almost deleted")
-    return HttpResponseRedirect('/Administration/sale_inventory/')
+    return HttpResponseRedirect('/sale_inventory/')
 

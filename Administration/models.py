@@ -6,7 +6,7 @@ from django.contrib.auth.models import AbstractUser
 from django.contrib.auth.models import AbstractUser
 from django.contrib.auth.models import AbstractUser
 from django.contrib.auth.models import AbstractBaseUser
-
+from django.contrib import admin
 
 # Create your models here.
 
@@ -27,6 +27,9 @@ class store(models.Model):
 
     def was_published_recently(self):
         return self.pub_date >= timezone.now() - datetime.timedelta(days=1)
+
+class UserAdmin(admin.ModelAdmin):
+    pass
         
 class User(AbstractBaseUser):
     '''  '''
@@ -42,6 +45,9 @@ class User(AbstractBaseUser):
     country = models.CharField(max_length=25, default="U.S.A.", blank=True, null=True)
     phone = models.CharField(max_length=15, blank=True, null=True)
     active = models.BooleanField(default=True)
+
+
+
 
 
 
@@ -63,7 +69,7 @@ class Inventory(models.Model):
     title = models.CharField(max_length=25)
     description = models.CharField(max_length=225, null=True, blank=True)
     category = models.CharField(max_length=25)
-    commission_amount = models.DecimalField(max_digits=5, decimal_places=2)
+    commission_amount = models.DecimalField(max_digits=5, decimal_places=2, null=True)
     manufacturer = models.CharField(max_length=25,null=True, blank=True)
     sku_number = models.CharField(max_length=25, null=True, blank=True)
     active = models.BooleanField(default=True)
@@ -75,17 +81,17 @@ class Inventory(models.Model):
 
 class SaleInventory(Inventory):
     '''physical inventory'''
-    quantity = models.BigIntegerField()
-    purchase_price = models.DecimalField(max_digits=5, decimal_places=2)
-    list_price = models.DecimalField(max_digits=5, decimal_places=2)
-    serial_num = models.CharField(max_length=25)
-    location_ID = models.CommaSeparatedIntegerField(max_length=15)
+    quantity = models.BigIntegerField(null=True)
+    purchase_price = models.DecimalField(max_digits=5, decimal_places=2, null=True)
+    list_price = models.DecimalField(max_digits=5, decimal_places=2, null=True)
+    serial_num = models.CharField(max_length=25, null=True)
+    location_ID = models.CommaSeparatedIntegerField(max_length=15, null=True)
 
 
 class RentalInventory(Inventory):
-    condition = models.CharField(max_length=25,null=True, blank=True)
+    condition = models.CharField(max_length=25, null=True, blank=True)
     serial_number = models.CharField(max_length=25, null=True, blank=True)
-    rental_rate = models.DecimalField(max_digits=5, decimal_places=2)
+    rental_rate = models.DecimalField(max_digits=5, decimal_places=2, null=True, blank=True)
     rental_history = models.CharField(max_length=25, null=True, blank=True)
 
 

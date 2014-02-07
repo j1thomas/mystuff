@@ -12,5 +12,8 @@ def process_request(request):
         'stores': stores,
     }
 
-    return templater.render_to_response(request, 'index.html', template_vars)
+    if request.user.is_authenticated():
 
+        return templater.render_to_response(request, 'index.html', template_vars)
+    else:
+        return templater.render_to_response(request, 'login.html', template_vars)
