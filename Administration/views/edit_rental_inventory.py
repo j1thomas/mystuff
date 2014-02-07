@@ -12,13 +12,13 @@ def process_request(request):
     #get the business objects
 
     if request.urlparams[0] == 'new':
-        i = imod.SaleInventory()
+        i = imod.RentalInventory()
         i.save()
         print("new object was created")
-        return HttpResponseRedirect('/Administration/edit_sale_inventory/' + str(i.id))
+        return HttpResponseRedirect('/Administration/edit_rental_inventory/' + str(i.id))
 
     else:
-        i = imod.SaleInventory.objects.get(id=request.urlparams[0])
+        i = imod.RentalInventory.objects.get(id=request.urlparams[0])
 
     #Run the Form
 
@@ -40,7 +40,7 @@ def process_request(request):
             i.commission_amount = form.cleaned_data['commission_amount']
             i.sku_number = form.cleaned_data['sku_number']
             i.save()
-            return HttpResponseRedirect('/Administration/sale_inventory')
+            return HttpResponseRedirect('/Administration/rental_inventory')
 
 
     #return the template HTML
@@ -48,7 +48,7 @@ def process_request(request):
         'form': form,
     }
 
-    return templater.render_to_response(request, 'edit_sale_inventory.html', template_vars)
+    return templater.render_to_response(request, 'edit_rental_inventory.html', template_vars)
 
 class inventoryForm(forms.Form):
     '''the stores form. imported from django up top'''
@@ -66,5 +66,5 @@ def process_request__delete(request):
     i.active=False
     i.save()
     print("This almost deleted")
-    return HttpResponseRedirect('/sale_inventory/')
+    return HttpResponseRedirect('/rental_inventory/')
 
