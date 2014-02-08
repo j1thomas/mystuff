@@ -100,7 +100,7 @@ LANGUAGE_CODE = 'en-us'
 
 TIME_ZONE = 'US' #might need to double check the code for it
 
-AUTH_USER_MODEL = 'Administration.User'##This may need to be modified
+# AUTH_USER_MODEL = 'Administration.User'##This may need to be modified
 
 USE_I18N = True
 

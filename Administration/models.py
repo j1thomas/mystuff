@@ -7,6 +7,7 @@ from django.contrib.auth.models import AbstractUser
 from django.contrib.auth.models import AbstractUser
 from django.contrib.auth.models import AbstractBaseUser
 from django.contrib import admin
+from django.contrib.auth.models import User
 
 # Create your models here.
 
@@ -31,27 +32,27 @@ class store(models.Model):
 class UserAdmin(admin.ModelAdmin):
     pass
         
-class User(AbstractBaseUser):
-    '''  '''
-    username = models.CharField(max_length=30, unique=True, default='username')
-    first_name = models.CharField(max_length=30, blank=True, null=True)
-    last_name = models.CharField(max_length=30, blank=True, null=True)
-    email = models.EmailField()
-    street = models.CharField(max_length=100, blank=True, null=True)
-    street2 = models.CharField(max_length=100, blank=True, null=True)
-    city = models.CharField(max_length=50, blank=True, null=True)
-    state = models.CharField(max_length=20, blank=True, null=True)
-    postal_code = models.CharField(max_length=9, blank=True, null=True)
-    country = models.CharField(max_length=25, default="U.S.A.", blank=True, null=True)
-    phone = models.CharField(max_length=15, blank=True, null=True)
-    active = models.BooleanField(default=True)
-
-
-
-
-
-
-    USERNAME_FIELD = 'username'
+# class User(AbstractBaseUser):
+#     '''  '''
+#     username = models.CharField(max_length=30, unique=True, default='username')
+#     first_name = models.CharField(max_length=30, blank=True, null=True)
+#     last_name = models.CharField(max_length=30, blank=True, null=True)
+#     email = models.EmailField()
+#     street = models.CharField(max_length=100, blank=True, null=True)
+#     street2 = models.CharField(max_length=100, blank=True, null=True)
+#     city = models.CharField(max_length=50, blank=True, null=True)
+#     state = models.CharField(max_length=20, blank=True, null=True)
+#     postal_code = models.CharField(max_length=9, blank=True, null=True)
+#     country = models.CharField(max_length=25, default="U.S.A.", blank=True, null=True)
+#     phone = models.CharField(max_length=15, blank=True, null=True)
+#     active = models.BooleanField(default=True)
+#
+#
+#
+#
+#
+#
+#     USERNAME_FIELD = 'username'
 
 
 # class Employee(User):

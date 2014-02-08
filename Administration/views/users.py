@@ -3,10 +3,12 @@ from django.conf import settings
 from django.http import HttpResponse, HttpResponseRedirect, Http404
 from Administration import models as umod
 from . import templater
+from django.contrib.auth.models import User
+
 
 
 def process_request(request):
-    user = umod.User.objects.exclude(active=False)
+    user = User.objects.exclude(is_active=False)
 
 
     template_vars = {
